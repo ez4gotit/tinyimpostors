@@ -3,14 +3,13 @@ Shader "Hidden/TI/BakeDepthBack"
     SubShader
     {
         Tags { "RenderType"="Opaque" }
-        // Back-most depth: accept fragments BEHIND the front pass and keep the deepest.
-        // Write ONLY G channel.
+        // Front-most depth: normal ZTest, write ONLY R channel
         Pass
         {
             ZWrite On
-            ZTest Greater
+            ZTest LEqual
             Cull Off
-            ColorMask G
+            ColorMask R
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -36,7 +35,7 @@ Shader "Hidden/TI/BakeDepthBack"
             float4 frag(v2f i) : SV_Target
             {
                 float d = Linear01Depth(i.wpos);
-                return float4(0,d,0,1); // G = back
+                return float4(d,0,0,1); // R = front
             }
             ENDHLSL
         }

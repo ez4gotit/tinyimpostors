@@ -3,9 +3,13 @@ This small tool for Unity inspired by Nvidia GPU Gems which i personaly recommen
 ### Repo Map:
 
 main____       // You are here
+
         |
+        
         stable // The feature-cutted, but stable (probably) version.
+        
         |
+        
         scratch // Trashcan for all untested ideas or half-working solutions
 
 
